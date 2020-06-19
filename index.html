@@ -2,43 +2,43 @@
 <html>
 
 <head>
-    <title>Magic Square</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
-    <link rel="stylesheet" href="stylesheet.css">
+	<title>Magic Square</title>
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<link href="style.css" rel="stylesheet">
+	<script src="script.js" defer>
+
+	</script>
 </head>
 
 <body>
-    <h1>Magic Square</h1>
+	<h1>Magic Square</h1>
 
-    <div id="board">
-        <div>
-            <div class="square">1</div>
-            <div class="square">2</div>
-            <div class="square">3</div>
-        </div>
-        <div>
-            <div class="square">4</div>
-            <div class="square">5</div>
-            <div class="square">6</div>
-        </div>
-        <div>
-            <div class="square">7</div>
-            <div class="square">8</div>
-            <div class="square">9</div>
-        </div>
-    </div>
+	<div id="grid">
+		<div>
+			<div class="square">1</div>
+			<div class="square">2</div>
+			<div class="square">3</div>
+		</div>
+		<div>
+			<div class="square">4</div>
+			<div class="square">5</div>
+			<div class="square">6</div>
+		</div>
+		<div>
+			<div class="square">7</div>
+			<div class="square">8</div>
+			<div class="square">9</div>
+		</div>
+	</div>
 
-    <div id="sidePanel">
-        <p id="instructions">
-            Click two numbers to swap them. The goal is to get every row, column, and diagonal to add up to the same number.
-        </p>
+	<div id="sidePanel">
+		<p id="instructions">
+			Click two numbers to swap them. The goal is to get every row, column, and diagonal to add up to the same number.
+		</p>
 
-        <button id="solve">Solve</button>
-
-        <p id="message"></p>
-    </div>
-
-    <script src="script.js"></script>
+		<button id="solveButton">Solve</button>
+    <p id="messageParagraph"></p>
+  </div>
 </body>
 
 </html>

@@ -1,67 +1,67 @@
-var squares = document.querySelectorAll(".square");
-var solveButton = document.getElementById("solve");
-var message = document.getElementById("message");
+let squares = document.getElementsByClassName(`square`)
+let solveButton = document.getElementById(`solveButton`)
+let messageParagraph = document.getElementById(`messageParagraph`)
 
-var gameInProgress = true;
-var numberSelected = null;
+let gameOver = false
+let selectedSquare
 
-for (var i = 0; i < squares.length; i++) {
-    squares[i].addEventListener("click", selectNumber);
+for (let square of squares) {
+  square.addEventListener(`click`, clickSquare)
 }
 
-solveButton.addEventListener("click", solve);
+solveButton.addEventListener(`click`, solve)
 
-function selectNumber() {
-    if (gameInProgress) {
-        if (!numberSelected) {
-            this.classList.add("selected");
-            numberSelected = this;
-        }
-        else {
-            var temp = numberSelected.innerHTML;
-            numberSelected.innerHTML = this.innerHTML;
-            this.innerHTML = temp;
-
-            numberSelected.classList.remove("selected");
-            numberSelected = null;
-
-            if (isSolved()) {
-                solveButton.style.display = "none";
-                message.innerHTML = "Good job!";
-                gameInProgress = false;
-            }
-        }
+function clickSquare() {
+  if (!gameOver) {
+    if (selectedSquare == null) {
+      selectedSquare = this
+      selectedSquare.classList.add(`selected`)
     }
+    else {
+      let temp = selectedSquare.innerHTML
+      selectedSquare.innerHTML = this.innerHTML
+      this.innerHTML = temp
+
+      selectedSquare.classList.remove(`selected`)
+      selectedSquare = null
+
+      if (isSolved()) {
+        solveButton.style.display = `none`
+        messageParagraph.innerHTML = `Good job!`
+        gameOver = true
+      }
+    }
+  }
 }
 
 function solve() {
-    while (!isSolved()) {
-        var r1 = Math.floor(Math.random() * squares.length);
-        var r2 = Math.floor(Math.random() * squares.length);
+  while (!isSolved()) {
+    let randomNumber1 = Math.floor(Math.random() * squares.length)
+    let randomNumber2 = Math.floor(Math.random() * squares.length)
 
-        var temp = squares[r1].innerHTML;
-        squares[r1].innerHTML = squares[r2].innerHTML;
-        squares[r2].innerHTML = temp;
-    }
+    let temp = squares[randomNumber1].innerHTML
+    squares[randomNumber1].innerHTML = squares[randomNumber2].innerHTML
+    squares[randomNumber2].innerHTML = temp
+  }
 
-    if (numberSelected) {
-        numberSelected.classList.remove("selected");
-        numberSelected = null;
-    }
+  if (selectedSquare != null) {
+    selectedSquare.classList.remove(`selected`)
+    selectedSquare = null
+  }
 
-    solveButton.style.display = "none";
-    message.classList.add("computerSolved");
-    message.innerHTML = "This solution was not preprogrammed.";
-    gameInProgress = false;
+  solveButton.style.display = `none`
+  messageParagraph.classList.add(`small`)
+  messageParagraph.innerHTML = `This solution was not preprogrammed.`
+  gameOver = true
 }
 
 function isSolved() {
-    return parseInt(squares[0].innerHTML, 10) + parseInt(squares[1].innerHTML, 10) + parseInt(squares[2].innerHTML, 10) == 15 &&
-        parseInt(squares[3].innerHTML, 10) + parseInt(squares[4].innerHTML, 10) + parseInt(squares[5].innerHTML, 10) == 15 &&
-        parseInt(squares[6].innerHTML, 10) + parseInt(squares[7].innerHTML, 10) + parseInt(squares[8].innerHTML, 10) == 15 &&
-        parseInt(squares[0].innerHTML, 10) + parseInt(squares[3].innerHTML, 10) + parseInt(squares[6].innerHTML, 10) == 15 &&
-        parseInt(squares[1].innerHTML, 10) + parseInt(squares[4].innerHTML, 10) + parseInt(squares[7].innerHTML, 10) == 15 &&
-        parseInt(squares[2].innerHTML, 10) + parseInt(squares[5].innerHTML, 10) + parseInt(squares[8].innerHTML, 10) == 15 &&
-        parseInt(squares[0].innerHTML, 10) + parseInt(squares[4].innerHTML, 10) + parseInt(squares[8].innerHTML, 10) == 15 &&
-        parseInt(squares[2].innerHTML, 10) + parseInt(squares[4].innerHTML, 10) + parseInt(squares[6].innerHTML, 10) == 15;
+  return Number(squares[0].innerHTML) + Number(squares[1].innerHTML) + Number(squares[2].innerHTML) == 15 &&
+    Number(squares[3].innerHTML) + Number(squares[4].innerHTML) + Number(squares[5].innerHTML) == 15 &&
+    Number(squares[6].innerHTML) + Number(squares[7].innerHTML) + Number(squares[8].innerHTML) == 15 &&
+    Number(squares[0].innerHTML) + Number(squares[3].innerHTML) + Number(squares[6].innerHTML) == 15 &&
+    Number(squares[1].innerHTML) + Number(squares[4].innerHTML) + Number(squares[7].innerHTML) == 15 &&
+    Number(squares[2].innerHTML) + Number(squares[5].innerHTML) + Number(squares[8].innerHTML) == 15 &&
+    Number(squares[0].innerHTML) + Number(squares[4].innerHTML) + Number(squares[8].innerHTML) == 15 &&
+    Number(squares[2].innerHTML) + Number(squares[4].innerHTML) + Number(squares[6].innerHTML) == 15
 }
