@@ -9,7 +9,7 @@ for (let square of squares) {
   square.addEventListener(`click`, clickSquare)
 }
 
-solveButton.addEventListener(`click`, solve)
+solveButton.addEventListener(`click`, startSolve)
 
 function clickSquare() {
   if (!gameOver) {
@@ -34,6 +34,19 @@ function clickSquare() {
   }
 }
 
+function startSolve() {
+  if (selectedSquare != null) {
+    selectedSquare.classList.remove(`selected`)
+    selectedSquare = null
+  }
+
+  solveButton.style.display = `none`
+  messageParagraph.classList.add(`small`)
+  messageParagraph.innerHTML = `Solving...`
+
+  setTimeout(solve, 10)
+}
+
 function solve() {
   while (!isSolved()) {
     let randomNumber1 = Math.floor(Math.random() * squares.length)
@@ -44,13 +57,6 @@ function solve() {
     squares[randomNumber2].innerHTML = temp
   }
 
-  if (selectedSquare != null) {
-    selectedSquare.classList.remove(`selected`)
-    selectedSquare = null
-  }
-
-  solveButton.style.display = `none`
-  messageParagraph.classList.add(`small`)
   messageParagraph.innerHTML = `This solution was not preprogrammed.`
   gameOver = true
 }
