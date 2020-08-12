@@ -43,6 +43,7 @@ function startSolve() {
   solveButton.style.display = `none`
   messageParagraph.classList.add(`small`)
   messageParagraph.innerHTML = `Solving...`
+  gameOver = true
 
   setTimeout(solve, 10)
 }
@@ -58,7 +59,6 @@ function solve() {
   }
 
   messageParagraph.innerHTML = `This solution was not preprogrammed.`
-  gameOver = true
 }
 
 function isSolved() {
