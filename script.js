@@ -16,8 +16,7 @@ function clickSquare() {
     if (selectedSquare == null) {
       selectedSquare = this
       selectedSquare.classList.add(`selected`)
-    }
-    else {
+    } else {
       let temp = selectedSquare.innerHTML
       selectedSquare.innerHTML = this.innerHTML
       this.innerHTML = temp
@@ -62,12 +61,21 @@ function solve() {
 }
 
 function isSolved() {
-  return Number(squares[0].innerHTML) + Number(squares[1].innerHTML) + Number(squares[2].innerHTML) == 15 &&
-    Number(squares[3].innerHTML) + Number(squares[4].innerHTML) + Number(squares[5].innerHTML) == 15 &&
-    Number(squares[6].innerHTML) + Number(squares[7].innerHTML) + Number(squares[8].innerHTML) == 15 &&
-    Number(squares[0].innerHTML) + Number(squares[3].innerHTML) + Number(squares[6].innerHTML) == 15 &&
-    Number(squares[1].innerHTML) + Number(squares[4].innerHTML) + Number(squares[7].innerHTML) == 15 &&
-    Number(squares[2].innerHTML) + Number(squares[5].innerHTML) + Number(squares[8].innerHTML) == 15 &&
-    Number(squares[0].innerHTML) + Number(squares[4].innerHTML) + Number(squares[8].innerHTML) == 15 &&
+  return (
+    Number(squares[0].innerHTML) + Number(squares[1].innerHTML) + Number(squares[2].innerHTML) ==
+      15 &&
+    Number(squares[3].innerHTML) + Number(squares[4].innerHTML) + Number(squares[5].innerHTML) ==
+      15 &&
+    Number(squares[6].innerHTML) + Number(squares[7].innerHTML) + Number(squares[8].innerHTML) ==
+      15 &&
+    Number(squares[0].innerHTML) + Number(squares[3].innerHTML) + Number(squares[6].innerHTML) ==
+      15 &&
+    Number(squares[1].innerHTML) + Number(squares[4].innerHTML) + Number(squares[7].innerHTML) ==
+      15 &&
+    Number(squares[2].innerHTML) + Number(squares[5].innerHTML) + Number(squares[8].innerHTML) ==
+      15 &&
+    Number(squares[0].innerHTML) + Number(squares[4].innerHTML) + Number(squares[8].innerHTML) ==
+      15 &&
     Number(squares[2].innerHTML) + Number(squares[4].innerHTML) + Number(squares[6].innerHTML) == 15
+  )
 }
